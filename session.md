@@ -1,72 +1,72 @@
-# Session
+# Oturum
 
-- [Configuration](#configuration)
-- [Session Usage](#session-usage)
-- [Flash Data](#flash-data)
-- [Database Sessions](#database-sessions)
+- [Yapılandırma](#yapilandirma)
+- [Oturum Kullanımı](#oturum-kullanimi)
+- [Flaş Verisi](#flas-verisi)
+- [Veritabanı Oturumları](#veritabani-oturumlari)
 
-<a name="configuration"></a>
-## Configuration
+<a name="yapilandirma"></a>
+## Yapılandırma
 
-Since HTTP driven applications are stateless, sessions provide a way to store information about the user across requests. Laravel ships with a variety of session back-ends available for use through a clean, unified API. Support for popular back-ends such as [Memcached](http://memcached.org), [Redis](http://redis.io), and databases is included out of the box.
+HTTP odaklı uygulamalar durum bilgisi taşımadıkları için, oturumlar istekler arasında kullanıcı hakkında bilgi saklamak için bir yol sağlar. Laravel temiz, tek bir API aracılığıyla kullanılabilen çeşitli oturum back-endleri ile birlikte gelir. İçerisinde [Memcached](http://memcached.org), [Redis](http://redis.io) ve veritabanları gibi popüler back-end desteği yer almaktadır.
 
-The session configuration is stored in `app/config/session.php`. Be sure to review the well documented options available to you in this file. By default, Laravel is configured to use the `native` session driver, which will work well for the majority of applications.
+Oturum yapılandırma ayarları `app/config/session.php` dosyasında bulunmaktadır. Bu belgede size sunulan iyi belgelenmiş seçenekleri gözden geçirmeyi unutmayın. Ön tanımlı olarak, Laravel `native` oturum sürücüsünü kullanmak üzere yapılandırılmıştır ve bu yapılandırma uygulamaların çoğunda iyi çalışacaktır.
 
-<a name="session-usage"></a>
-## Session Usage
+<a name="oturum-kullanimi"></a>
+## Oturum Kullanımı
 
-**Storing An Item In The Session**
+**Oturumda Bir Öğe Saklamak**
 
-	Session::put('key', 'value');
+	Session::put('anahtar', 'deger');
 
-**Retrieving An Item From The Session**
+**Oturumdaki Bir Öğeyi Öğrenmek**
 
-	$value = Session::get('key');
+	$deger = Session::get('anahtar');
 
-**Retrieving An Item Or Returning A Default Value**
+**Bir Öğe Almak Veya Varsayılan Bir Değer Döndürmek**
 
-	$value = Session::get('key', 'default');
+	$deger = Session::get('anahtar', 'default');
 
-	$value = Session::get('key', function() { return 'default'; });
+	$deger = Session::get('anahtar', function() { return 'default'; });
 
-**Determining If An Item Exists In The Session**
+**Oturumda Bir Öğenin Olup Olmadığını Tespit Etmek**
 
-	if (Session::has('users'))
+	if (Session::has('uyeler'))
 	{
 		//
 	}
 
-**Removing An Item From The Session**
+**Oturumdan Bir Öğeyi Çıkartmak**
 
-	Session::forget('key');
+	Session::forget('anahtar');
 
-**Removing All Items From The Session**
+**Oturumdaki Tüm Öğeleri Çıkartmak**
 
 	Session::flush();
 
-**Regenerating The Session ID**
+**Tekrar Oturum ID Üretmek**
 
 	Session::regenerate();
 
-<a name="flash-data"></a>
-## Flash Data
+<a name="flas-verisi"></a>
+## Flaş Verisi
 
-Sometimes you may wish to store items in the session only for the next request. You may do so using the `Session::flash` method:
+Bazen oturumda sadece sonraki istek için öğeler saklamak isteyebilirsiniz. Bunu `Session::flash` metodunu kullanarak gerçekleştirebilirsiniz:
 
-	Session::flash('key', 'value');
+	Session::flash('anahtar', 'deger');
 
-**Reflashing The Current Flash Data For Another Request**
+**Mevcut Flaş Verinin Bir Başka İstek İçin Yeniden Flaşlanması**
 
 	Session::reflash();
 
-**Reflashing Only A Subset Of Flash Data**
+**Flaş Verinin Sadece Bir Alt Kümesinin Yeniden Flaşlanması**
 
-	Session::keep(array('username', 'email'));
+	Session::keep(array('uyeadi', 'email'));
 
-<a name="database-sessions"></a>
-## Database Sessions
+<a name="veritabani-oturumlari"></a>
+## Veritabanı Oturumları
 
-When using the `database` session driver, you will need to setup a table to contain the session items. Below is an example `Schema` declaration for the table:
+`database` oturum sürücüsü kullanıyorken, oturum öğelerini taşıyan bir tablo kurulumu gerekecek. Aşağıda, bu tablo için örnek bir `Şema` deklarasyonu gösterilmektedir:
 
 	Schema::create('sessions', function($table)
 	{
@@ -75,7 +75,7 @@ When using the `database` session driver, you will need to setup a table to cont
 		$table->integer('last_activity');
 	});
 
-Of course, you may use the `session:table` Artisan command to generate this migration for you!
+Tabii ki, bu migrasyonu üretmek için `session:table` Artisan komutunu kullanabilirsiniz!
 
 	php artisan session:table
 

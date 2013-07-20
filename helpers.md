@@ -1,13 +1,13 @@
-# Helper Functions
+# Yardımcı (Helper) Fonksiyonları
 
-- [Arrayler](#arrays)
+- [Arrayler (Diziler)](#arrays)
 - [Dizinler](#paths)
 - [Yazı İşlemleri](#strings)
 - [URL İşlemleri](#urls)
 - [Diğer](#miscellaneous)
 
 <a name="arrays"></a>
-## Arrayler
+## Arrayler (Diziler)
 
 ### array_add
 
@@ -258,7 +258,7 @@ Girilen dil satırını çevirir. `Lang::get` fonksiyonunun kısayolu.
 ### trans_choice
 
 
-Tranlate a given language line with inflection. Alias of `Lang::choice`.
+Girilen dil satırını çekimli çevirir. `Lang::choice` fonksiyonunun kısayolu.
 
 	$value = trans_choice('foo.bar', $count);
 
